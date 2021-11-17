@@ -1,0 +1,20 @@
+spec:
+  replicas: 1
+  template:
+    containers:
+      - env:
+          - name: POSTGRESQL_JNDI
+            value: "java:jboss/datasources/PostgreSQLDS"
+          - name: POSTGRESQL_HOST
+            value: "postgres-service"
+          - name: POSTGRESQL_PORT
+            value: "5432"
+          - name: POSTGRESQL_USER
+            value: "postgres"
+          - name: POSTGRESQL_PASSWORD
+            value: "postgres"
+          - name: POSTGRESQL_DATABASE
+            value: "test"
+        image: ghcr.io/andidroid/testwar:latest
+        imagePullPolicy: IfNotPresent
+        name: andidroid-testwar

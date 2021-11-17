@@ -1,0 +1,745 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>me.andidroid</groupId>
+    <artifactId>test</artifactId>
+    <version>0.0.25</version>
+  </parent>
+  <artifactId>testmessagingwar</artifactId>
+  <version>0.1.7-SNAPSHOT</version>
+  <packaging>war</packaging>
+
+  <name>testmessagingwar</name>
+  <description>test messaging war module</description>
+
+  <url>https://github.com/andidroid/testmessagingwar</url>
+
+  <licenses>
+    <license>
+      <name>Do What The F*ck You Want To Public License</name>
+      <url>http://www.wtfpl.net/txt/copying/</url>
+      <distribution>repo</distribution>
+      <comments>The Do What The Fuck You Want To Public License (WTFPL) is a free software license.</comments>
+    </license>
+  </licenses>
+
+  <scm>
+    <connection>scm:git:https://github.com/andidroid/testmessagingwar.git</connection>
+    <developerConnection>scm:git:https://github.com/andidroid/testmessagingwar.git</developerConnection>
+    <url>https://github.com/andidroid/testmessagingwar.git</url>
+    <tag>HEAD</tag>
+  </scm>
+
+  <distributionManagement>
+    <repository>
+      <id>github</id>
+      <name>GitHub andidroid Apache Maven Packages</name>
+      <url>https://maven.pkg.github.com/andidroid/testmessagingwar</url>
+    </repository>
+    <!--
+    <snapshotRepository>
+      <id>github</id>
+      <name>GitHub andidroid Apache Maven Packages</name>
+      <url>https://maven.pkg.github.com/andidroid</url>
+    </snapshotRepository>
+    -->
+    <site>
+      <id>github</id>
+      <name>GitHub andidroid Apache Maven Packages</name>
+      <url>scm:git:https://github.com/andidroid/testmessagingwar.git</url>
+    </site>
+  </distributionManagement>
+
+  <properties>
+    <enforcer.skip>true</enforcer.skip>
+    <java.version>11</java.version>
+    <javaee.version>8.0.0</javaee.version>
+    <microprofile.version>4.1</microprofile.version>
+
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+
+
+    <mockito.version>4.0.0</mockito.version>
+    <rest-assured.version>4.4.0</rest-assured.version>
+    <microshed.version>0.9.1</microshed.version>
+    <testcontainers.version>1.16.2</testcontainers.version>
+    <mockserver-client-java.version>5.11.2</mockserver-client-java.version>
+    <greenmail.version>1.6.5</greenmail.version>
+    <awaitility.version>4.1.1</awaitility.version>
+
+    <wildfly.version>25.0.1.Final</wildfly.version>
+
+    <wildfly-datasources-galleon-pack.version>2.0.3.Final</wildfly-datasources-galleon-pack.version>
+
+    <wildfly-maven-plugin.version>2.1.0.Final</wildfly-maven-plugin.version>
+    <wildfly-jar-maven-plugin.version>6.1.0.Final</wildfly-jar-maven-plugin.version>
+    <windup-maven-plugin.version>5.2.0.Final</windup-maven-plugin.version>
+
+    <kafka.version>2.8.1</kafka.version>
+
+    <!-- <arquillian-wildfly.version>3.0.1.Final</arquillian-wildfly.version> -->
+    <arquillian-wildfly.version>4.0.0.Alpha3</arquillian-wildfly.version>
+    <!-- <arquillian-junit.version>1.6.0.Final</arquillian-junit.version> -->
+    <arquillian.version>1.7.0.Alpha10 </arquillian.version>
+    <shrinkwrap.version>1.2.6</shrinkwrap.version>
+
+
+    <jkube.version>1.5.1</jkube.version>
+    <jib.version>3.1.4</jib.version>
+    <flyway.version>8.0.4</flyway.version>
+    <postgres.version>42.3.1</postgres.version>
+  </properties>
+
+  <!-- External non standard repositories -->
+  <repositories>
+    <repository>
+      <id>github</id>
+      <url>https://maven.pkg.github.com/andidroid/test</url>
+    </repository>
+  </repositories>
+
+  <dependencyManagement>
+    <dependencies>
+
+      <dependency>
+        <groupId>org.eclipse.microprofile</groupId>
+        <artifactId>microprofile</artifactId>
+        <version>${microprofile.version}</version>
+        <type>pom</type>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>jakarta.platform</groupId>
+        <artifactId>jakarta.jakartaee-api</artifactId>
+        <version>${javaee.version}</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.wildfly.bom</groupId>
+        <artifactId>wildfly-microprofile</artifactId>
+        <version>${wildfly.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <!-- importing the jakartaee8-with-tools BOM adds specs and other useful artifacts as managed dependencies -->
+      <dependency>
+        <groupId>org.wildfly.bom</groupId>
+        <artifactId>wildfly-jakartaee8-with-tools</artifactId>
+        <version>${wildfly.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.apache.kafka</groupId>
+        <artifactId>kafka-streams</artifactId>
+        <version>${kafka.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <scope>provided</scope>
+      </dependency>
+
+
+      <dependency>
+        <groupId>io.rest-assured</groupId>
+        <artifactId>rest-assured</artifactId>
+        <version>${rest-assured.version}</version>
+        <scope>test</scope>
+      </dependency>
+
+      <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+      <dependency>
+        <groupId>org.postgresql</groupId>
+        <artifactId>postgresql</artifactId>
+        <version>${postgres.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.jboss.arquillian.test</groupId>
+        <artifactId>arquillian-test-api</artifactId>
+        <version>${arquillian.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.arquillian.junit5</groupId>
+        <artifactId>arquillian-junit5-core</artifactId>
+        <version>${arquillian.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.wildfly.arquillian</groupId>
+        <artifactId>wildfly-arquillian-container-managed</artifactId>
+        <version>${arquillian-wildfly.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.wildfly.arquillian</groupId>
+        <artifactId>wildfly-arquillian-container-bootable</artifactId>
+        <version>${arquillian-wildfly.version}</version>
+        <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.jboss.arquillian.junit5</groupId>
+        <artifactId>arquillian-junit5-container</artifactId>
+        <version>${arquillian.version}</version>
+        <scope>test</scope>
+      </dependency>
+
+
+    </dependencies>
+  </dependencyManagement>
+  <dependencies>
+    <dependency>
+      <groupId>org.eclipse.microprofile.reactive.messaging</groupId>
+      <artifactId>microprofile-reactive-messaging-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.smallrye.reactive</groupId>
+      <artifactId>smallrye-reactive-messaging-kafka-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>io.smallrye.reactive</groupId>
+      <artifactId>smallrye-reactive-messaging-api</artifactId>
+      <scope>provided</scope>
+      <version>3.10.1</version>
+    </dependency>
+    <dependency>
+      <groupId>io.smallrye.reactive</groupId>
+      <artifactId>smallrye-reactive-messaging-provider</artifactId>
+      <version>3.10.1</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.kafka</groupId>
+      <artifactId>kafka-streams</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jboss.arquillian.test</groupId>
+      <artifactId>arquillian-test-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jboss.arquillian.junit5</groupId>
+      <artifactId>arquillian-junit5-container</artifactId>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.eclipse.microprofile</groupId>
+      <artifactId>microprofile</artifactId>
+      <type>pom</type>
+    </dependency>
+
+    <dependency>
+      <groupId>jakarta.platform</groupId>
+      <artifactId>jakarta.jakartaee-api</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>io.rest-assured</groupId>
+      <artifactId>rest-assured</artifactId>
+      <scope>test</scope>
+    </dependency>
+
+
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>testcontainers</artifactId>
+      <version>${testcontainers.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>${testcontainers.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.microshed</groupId>
+      <artifactId>microshed-testing-testcontainers</artifactId>
+      <version>${microshed.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <!--
+  -->
+    <!--
+    <dependency>
+      <groupId>org.microshed</groupId>
+      <artifactId>microshed-testing-liberty</artifactId>
+      <version>0.9.1</version>
+      <scope>test</scope>
+    </dependency>
+   -->
+    <dependency>
+      <groupId>org.microshed</groupId>
+      <artifactId>microshed-testing-wildfly</artifactId>
+      <version>${microshed.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>${testcontainers.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>mockserver</artifactId>
+      <version>${testcontainers.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>kafka</artifactId>
+      <version>${testcontainers.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mock-server</groupId>
+      <artifactId>mockserver-client-java</artifactId>
+      <version>${mockserver-client-java.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>1.7.32</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>${mockito.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.flywaydb</groupId>
+      <artifactId>flyway-core</artifactId>
+      <version>${flyway.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.icegreen</groupId>
+      <artifactId>greenmail-junit5</artifactId>
+      <version>${greenmail.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.awaitility</groupId>
+      <artifactId>awaitility</artifactId>
+      <version>${awaitility.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+
+    <dependency>
+      <groupId>io.smallrye</groupId>
+      <artifactId>smallrye-health-ui</artifactId>
+      <version>3.1.2</version>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <finalName>${project.artifactId}</finalName>
+    <pluginManagement>
+      <!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+      <plugins>
+
+        <plugin>
+          <artifactId>maven-war-plugin</artifactId>
+          <configuration>
+            <failOnMissingWebXml>false</failOnMissingWebXml>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <groupId>org.eclipse.jkube</groupId>
+          <artifactId>kubernetes-maven-plugin</artifactId>
+          <version>${jkube.version}</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>resource</goal>
+                <goal>build</goal>
+              </goals>
+            </execution>
+          </executions>
+          <configuration>
+            <enricher>
+              <config>
+                <jkube-service>
+                  <type>NodePort</type>
+                </jkube-service>
+              </config>
+            </enricher>
+            <images>
+              <image>
+                <name>ghcr.io/andidroid/testmessagingwar:latest</name>
+              </image>
+            </images>
+            <!-- resources to be created -->
+            <resources>
+
+              <!-- Name of the replication controller, which will have a sane default (container alisa, mvn coords, ..) -->
+              <controllerName>${project.artifactId}-controller</controllerName>
+              <!-- Replica count-->
+              <replicas>2</replicas>
+
+              <!-- Dedicated section for (multiple) services to define -->
+              <services>
+                <service>
+                  <name>${project.artifactId}-service</name>
+                  <headless>false</headless>
+                  <type>NodePort</type>
+                  <ports>
+                    <port>
+                      <name>8080</name>
+                      <protocol>tcp</protocol>
+                      <port>8080</port>
+                      <targetPort>8080</targetPort>
+                      <nodePort>32000</nodePort>
+                    </port>
+                    <port>
+                      <name>9990</name>
+                      <protocol>tcp</protocol>
+                      <port>9990</port>
+                      <targetPort>9990</targetPort>
+                      <nodePort>32001</nodePort>
+                    </port>
+                  </ports>
+                </service>
+              </services>
+            </resources>
+          </configuration>
+
+
+        </plugin>
+
+      </plugins>
+    </pluginManagement>
+    <plugins>
+
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <includes>
+            <include>*/*Test.java</include>
+          </includes>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>enforce-no-snapshots</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <requireReleaseDeps>
+                  <message>No Snapshots Allowed!</message>
+                </requireReleaseDeps>
+              </rules>
+              <fail>false</fail>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.flywaydb</groupId>
+        <artifactId>flyway-maven-plugin</artifactId>
+        <version>${flyway.version}</version>
+        <configuration>
+          <url>jdbc:postgresql://localhost:5432/test</url>
+          <user>postgres</user>
+          <password>postgres</password>
+          <locations>
+            <location>filesystem:src/main/db/migration</location>
+          </locations>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgres.version}</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>war</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.wildfly.plugins</groupId>
+        <artifactId>wildfly-maven-plugin</artifactId>
+        <version>${wildfly-maven-plugin.version}</version>
+        <configuration>
+          <jboss-home>target/bootable-jar-build-artifacts/wildfly</jboss-home>
+        </configuration>
+      </plugin>
+
+
+      <plugin>
+        <groupId>org.wildfly.plugins</groupId>
+        <artifactId>wildfly-jar-maven-plugin</artifactId>
+        <version>${wildfly-jar-maven-plugin.version}</version>
+        <configuration>
+          <feature-packs>
+            <feature-pack>
+              <location>wildfly@maven(org.jboss.universe:community-universe)#${wildfly.version}</location>
+            </feature-pack>
+            <feature-pack>
+              <groupId>org.wildfly</groupId>
+              <artifactId>wildfly-datasources-galleon-pack</artifactId>
+              <version>${wildfly-datasources-galleon-pack.version}</version>
+            </feature-pack>
+          </feature-packs>
+          <layers>
+            <layer>jaxrs</layer>
+            <layer>observability</layer>
+            <layer>cloud-profile</layer>
+
+            <!--
+            <layer>remote-activemq</layer>
+            -->
+            <!---->
+            <layer>postgresql-datasource</layer>
+
+            <layer>web-console</layer>
+          </layers>
+          <excluded-layers>
+            <layer>deployment-scanner</layer>
+            <!--
+            <layer>messaging-activemq</layer>
+            -->
+            <layer>jms-activemq</layer>
+          </excluded-layers>
+          <plugin-options>
+            <jboss-fork-embedded>${plugin.fork.embedded}</jboss-fork-embedded>
+          </plugin-options>
+          <!-- required by jib to retrieve the bootable jar -->
+          <output-file-name>testmessagingwar.jar</output-file-name>
+        </configuration>
+        <!--
+        <executions>
+          <execution>
+            <goals>
+              <goal>package</goal>
+            </goals>
+          </execution>
+        </executions>
+      -->
+      </plugin>
+
+      <plugin>
+        <groupId>com.google.cloud.tools</groupId>
+        <artifactId>jib-maven-plugin</artifactId>
+        <version>${jib.version}</version>
+        <configuration>
+          <!--
+          <containerizingMode>packaged</containerizingMode>
+          -->
+          <from>
+            <image>andidroid/testhollowjar:latest</image>
+          </from>
+
+
+          <to>
+            <image>andidroid/testmessagingwar</image>
+            <tags>${project.version}</tags>
+            <!-- to push to external repo -->
+            <!--<image>quay.io/<your organization>/jaxrs-jib</image>-->
+          </to>
+
+          <container>
+            <entrypoint>INHERIT</entrypoint>
+            <appRoot>/deployments/ROOT.war</appRoot>
+          </container>
+        </configuration>
+        <!--
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>dockerBuild</goal>
+            </goals>
+          </execution>
+        </executions>
+      -->
+      </plugin>
+    </plugins>
+  </build>
+  <reporting>
+    <plugins></plugins>
+  </reporting>
+  <profiles>
+
+    <profile>
+      <id>windup</id>
+      <build>
+        <plugins>
+
+          <plugin>
+            <groupId>org.jboss.windup.plugin</groupId>
+            <artifactId>windup-maven-plugin</artifactId>
+            <version>${windup-maven-plugin.version}</version>
+
+            <executions>
+              <execution>
+                <id>run-windup</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>windup</goal>
+                </goals>
+              </execution>
+            </executions>
+            <!-- -->
+            <configuration>
+              <offlineMode>true</offlineMode>
+              <output>${project.build.directory}/windup-report</output>
+              <input>${project.basedir}</input>
+              <overwrite>true</overwrite>
+              <sourceMode>true</sourceMode>
+              <explodedApps>true</explodedApps>
+              <exportCSV>true</exportCSV>
+              <enableTattletale>true</enableTattletale>
+              <enableCompatibleFilesReport>true</enableCompatibleFilesReport>
+
+              <sourceTechnologies>
+                <sourceTechnology>jboss</sourceTechnology>
+              </sourceTechnologies>
+              <targetTechnologies>
+                <targetTechnology>eap:8</targetTechnology>
+              </targetTechnologies>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>integration-test</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-failsafe-plugin</artifactId>
+            <configuration>
+              <!--
+              <includes>
+                <include>*/*IT.java</include>
+              </includes>
+            -->
+              <!-- include tags -->
+              <groups>MicroShedTest</groups>
+              <!-- exclude tags -->
+              <excludedGroups>IntegrationTest</excludedGroups>
+            </configuration>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>integration-test</goal>
+                  <goal>verify</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>arquillian-test</id>
+      <dependencies>
+
+        <dependency>
+          <groupId>org.wildfly.arquillian</groupId>
+          <artifactId>wildfly-arquillian-container-managed</artifactId>
+        </dependency>
+        <!--
+    <dependency>
+      <groupId>org.wildfly.arquillian</groupId>
+      <artifactId>wildfly-arquillian-container-bootable</artifactId>
+    </dependency>
+ -->
+        <dependency>
+          <groupId>org.jboss.arquillian.junit5</groupId>
+          <artifactId>arquillian-junit5-core</artifactId>
+        </dependency>
+        <dependency>
+          <groupId>org.jboss.arquillian.junit5</groupId>
+          <artifactId>arquillian-junit5-container</artifactId>
+        </dependency>
+      </dependencies>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-failsafe-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>jaxrs.surefire</id>
+                <goals>
+                  <goal>integration-test</goal>
+                  <goal>verify</goal>
+
+                </goals>
+                <configuration>
+                  <includes>
+                    <include>*/*IT.java</include>
+                  </includes>
+                  <!-- -->
+                  <groups>ArquillianTest</groups>
+                  <!-- exclude tags -->
+                  <excludedGroups>IntegrationTest,MicroShedTest</excludedGroups>
+                  <failIfNoTests>true</failIfNoTests>
+                  <systemPropertyVariables>
+                    <bootable.jar>${project.build.directory}/testhollowjar.jar</bootable.jar>
+                    <arquillian.xml>arquillian.xml</arquillian.xml>
+                    <arquillian.launch>wildfly-managed</arquillian.launch>
+                    <!-- <java.util.logging.manager>org.jboss.logmanager.LogManager</java.util.logging.manager> -->
+                  </systemPropertyVariables>
+                  <redirectTestOutputToFile>false</redirectTestOutputToFile>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>

@@ -1,0 +1,37 @@
+name: Test
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: "11"
+          distribution: "adopt"
+          server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
+          settings-path: ${{ github.workspace }} # location for the settings.xml file
+      - run: |
+          date > generated.txt
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add generated.txt
+          git commit -m "generated"
+          mvn release:prepare -B -DautoVersionSubmodules=true -DskipTests=true
+          git push
+      - name: Site Upload
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          mvn -B site site:stage
+          mvn -B scm-publish:publish-scm
+      - name: Publish to GitHub Packages Apache Maven
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          mvn release:perform -B -DskipTests=true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,29 @@
+/.apt_generated/
+/.apt_generated_tests/
+/target/
+/.project
+/.idea/
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Intellij
+.idea/
+*.iml
+*.iws
+
+# Visual Studio Code
+.vscode
+
+# Mac
+.DS_Store
+
+# Maven
+log/
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+release.properties
