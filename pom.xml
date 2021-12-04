@@ -586,6 +586,8 @@
           <container>
             <entrypoint>INHERIT</entrypoint>
             <appRoot>/deployments/ROOT.war</appRoot>
+            <!-- USE_CURRENT_TIMESTAMP -->
+            <creationTime>USE_CURRENT_TIMESTAMP</creationTime>
           </container>
         </configuration>
         <!--
