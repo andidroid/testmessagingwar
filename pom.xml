@@ -71,7 +71,7 @@
     <greenmail.version>1.6.5</greenmail.version>
     <awaitility.version>4.1.1</awaitility.version>
 
-    <wildfly.version>25.0.1.Final</wildfly.version>
+    <wildfly.version>26.0.0.Final</wildfly.version>
 
     <wildfly-datasources-galleon-pack.version>2.0.3.Final</wildfly-datasources-galleon-pack.version>
 
@@ -216,7 +216,7 @@
     <dependency>
       <groupId>io.smallrye.reactive</groupId>
       <artifactId>smallrye-reactive-messaging-provider</artifactId>
-      <version>3.10.1</version>
+      <version>3.13.0</version>
       <scope>provided</scope>
     </dependency>
 
