@@ -75,7 +75,7 @@
 
     <wildfly-maven-plugin.version>2.1.0.Final</wildfly-maven-plugin.version>
     <wildfly-jar-maven-plugin.version>7.0.0.Final</wildfly-jar-maven-plugin.version>
-    <windup-maven-plugin.version>5.2.0.Final</windup-maven-plugin.version>
+    <windup-maven-plugin.version>5.2.1.Final</windup-maven-plugin.version>
 
     <kafka.version>2.8.1</kafka.version>
 
@@ -141,6 +141,7 @@
       <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-api</artifactId>
+        <version>1.7.32</version>
         <scope>provided</scope>
       </dependency>
 
