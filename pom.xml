@@ -132,11 +132,6 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
-      <dependency>
-        <groupId>org.apache.kafka</groupId>
-        <artifactId>kafka-streams</artifactId>
-        <version>${kafka.version}</version>
-      </dependency>
 
       <dependency>
         <groupId>org.slf4j</groupId>
@@ -195,6 +190,7 @@
     </dependencies>
   </dependencyManagement>
   <dependencies>
+<<<<<<< HEAD
     <dependency>
       <groupId>org.eclipse.microprofile.reactive.messaging</groupId>
       <artifactId>microprofile-reactive-messaging-api</artifactId>
@@ -223,6 +219,8 @@
       <groupId>org.apache.kafka</groupId>
       <artifactId>kafka-streams</artifactId>
     </dependency>
+=======
+>>>>>>> e03c391 (jms event broadcasting)
 
     <dependency>
       <groupId>org.jboss.arquillian.test</groupId>
