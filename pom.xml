@@ -4,7 +4,7 @@
   <parent>
     <groupId>me.andidroid</groupId>
     <artifactId>test</artifactId>
-    <version>0.0.27</version>
+    <version>0.0.31</version>
   </parent>
   <artifactId>testmessagingwar</artifactId>
   <version>0.2.1-SNAPSHOT</version>
