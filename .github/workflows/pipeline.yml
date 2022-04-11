@@ -30,7 +30,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: upload artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: testmessagingwar-artifact
           path: target/testmessagingwar.war
@@ -221,7 +221,7 @@ jobs:
           restore-keys: ${{ runner.os }}-m2
       - name: Site Generation
         run: mvn -B site site:stage
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
         with:
           name: site-artifact
           path: target/site/
