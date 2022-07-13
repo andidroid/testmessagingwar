@@ -117,28 +117,8 @@
             </div>
             <div class="divTableBody">
                 <div class="divTableRow">
-                    <div class="divTableCell">Acme</div>
-                    <div class="divTableCell"><span id="Acme">N/A</span></div>
-
-                </div>
-                <div class="divTableRow">
-                    <div class="divTableCell">Globex</div>
-                    <div class="divTableCell"><span id="Globex">N/A</span></div>
-
-                </div>
-                <div class="divTableRow">
-                    <div class="divTableCell">Umbrella</div>
-                    <div class="divTableCell"><span id="Umbrella">N/A</span></div>
-
-                </div>
-                <div class="divTableRow">
-                    <div class="divTableCell">Soylent</div>
-                    <div class="divTableCell"><span id="Soylent">N/A</span></div>
-
-                </div>
-                <div class="divTableRow">
-                    <div class="divTableCell">Initech</div>
-                    <div class="divTableCell"><span id="Initech">N/A</span></div>
+                    <div class="divTableCell">Events</div>
+                    <div class="divTableCell"><span id="events">N/A</span></div>
 
                 </div>
             </div>
@@ -148,12 +128,11 @@
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script>
-    var source = new EventSource("/testmessagingservice/messages/stream");
+    var source = new EventSource("http://localhost:8080/reactive/testmessagingservice/messages/stream");
     source.onmessage = function (event) {
+        console.log(event);
         var data = JSON.parse(event.data);
-        var company = data['company'];
-        var value = data['value'];
-        document.getElementById(company).innerHTML = value;
+        document.getElementById('events').innerHTML = data;
     };
 </script>
 
