@@ -55,7 +55,7 @@
     <enforcer.skip>true</enforcer.skip>
     <java.version>11</java.version>
     <javaee.version>8.0.0</javaee.version>
-    <microprofile.version>4.1</microprofile.version>
+    <microprofile.version>5.0</microprofile.version>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
