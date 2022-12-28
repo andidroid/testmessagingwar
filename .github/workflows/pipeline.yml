@@ -18,7 +18,7 @@ jobs:
           server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
           settings-path: ${{ github.workspace }} # location for the settings.xml file
       - name: Cache Maven packages
-        uses: actions/cache@v3.0.7
+        uses: actions/cache@v3.2.2
         env:
           cache-name: cache-maven-modules
         with:
@@ -51,7 +51,7 @@ jobs:
           server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
           settings-path: ${{ github.workspace }} # location for the settings.xml file
       - name: Cache Maven packages
-        uses: actions/cache@v3.0.7
+        uses: actions/cache@v3.2.2
         env:
           cache-name: cache-maven-modules
         with:
@@ -79,7 +79,7 @@ jobs:
           server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
           settings-path: ${{ github.workspace }} # location for the settings.xml file
       - name: Cache Maven packages
-        uses: actions/cache@v3.0.7
+        uses: actions/cache@v3.2.2
         env:
           cache-name: cache-maven-modules
         with:
@@ -119,7 +119,7 @@ jobs:
           server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
           settings-path: ${{ github.workspace }} # location for the settings.xml file
       - name: Cache Maven packages
-        uses: actions/cache@v3.0.7
+        uses: actions/cache@v3.2.2
         env:
           cache-name: cache-maven-modules
         with:
@@ -148,7 +148,7 @@ jobs:
           server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
           settings-path: ${{ github.workspace }} # location for the settings.xml file
       - name: Cache Maven packages
-        uses: actions/cache@v3.0.7
+        uses: actions/cache@v3.2.2
         env:
           cache-name: cache-maven-check-modules
         with:
@@ -175,7 +175,7 @@ jobs:
           java-version: "11"
           distribution: "adopt"
       - name: Cache SonarCloud packages
-        uses: actions/cache@v3.0.7
+        uses: actions/cache@v3.2.2
         env:
           cache-name: cache-sonar-packages
         with:
@@ -183,7 +183,7 @@ jobs:
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
       - name: Cache Maven packages
-        uses: actions/cache@v3.0.7
+        uses: actions/cache@v3.2.2
         env:
           cache-name: cache-maven-modules
         with:
@@ -212,7 +212,7 @@ jobs:
           server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
           settings-path: ${{ github.workspace }} # location for the settings.xml file
       - name: Cache Maven packages
-        uses: actions/cache@v3.0.7
+        uses: actions/cache@v3.2.2
         env:
           cache-name: cache-maven-site-modules
         with:
@@ -241,7 +241,7 @@ jobs:
           server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
           settings-path: ${{ github.workspace }} # location for the settings.xml file
       - name: Cache Maven packages
-        uses: actions/cache@v3.0.7
+        uses: actions/cache@v3.2.2
         env:
           cache-name: cache-maven-modules
         with:
