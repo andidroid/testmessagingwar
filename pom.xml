@@ -68,7 +68,7 @@
     <microshed.version>0.9.1</microshed.version>
     <testcontainers.version>1.17.6</testcontainers.version>
     <mockserver-client-java.version>5.15.0</mockserver-client-java.version>
-    <greenmail.version>1.6.5</greenmail.version>
+    <greenmail.version>2.0.0</greenmail.version>
     <awaitility.version>4.2.0</awaitility.version>
 
     <wildfly.version>26.0.1.Final</wildfly.version>
