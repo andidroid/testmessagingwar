@@ -63,7 +63,7 @@
     <maven.compiler.target>${java.version}</maven.compiler.target>
 
 
-    <mockito.version>5.3.0</mockito.version>
+    <mockito.version>5.3.1</mockito.version>
     <rest-assured.version>5.3.0</rest-assured.version>
     <microshed.version>0.9.1</microshed.version>
     <testcontainers.version>1.18.0</testcontainers.version>
