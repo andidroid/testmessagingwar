@@ -88,7 +88,7 @@
 
     <jkube.version>1.12.0</jkube.version>
     <jib.version>3.3.1</jib.version>
-    <flyway.version>9.16.3</flyway.version>
+    <flyway.version>9.17.0</flyway.version>
     <postgres.version>42.6.0</postgres.version>
   </properties>
 
