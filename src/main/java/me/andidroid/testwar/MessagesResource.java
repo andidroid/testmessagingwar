@@ -28,55 +28,60 @@ import jakarta.ws.rs.sse.OutboundSseEvent;
 import jakarta.ws.rs.sse.Sse;
 import jakarta.ws.rs.sse.SseBroadcaster;
 import jakarta.ws.rs.sse.SseEventSink;
+import io.opentelemetry.api.trace.Span;
+import io.opentelemetry.api.trace.SpanKind;
+import io.opentelemetry.api.trace.Tracer;
 
 @ApplicationScoped
 @Path("/messages")
-public class MessagesResource
-{
+public class MessagesResource {
     /**
      * Logging via slf4j api
      */
     private static final org.slf4j.Logger LOGGER = org.slf4j.LoggerFactory.getLogger(MessagesResource.class);
-    
+
     @Inject
     MessagingReceiverService messagingReceiver;
-    
+
     @Context
     private Sse sse;
-    
+
     @Inject
     private SseService sseService;
-    
+
     @Resource
     private ManagedExecutorService managedExecutorService;
-    
+
+    @Inject
+    private Tracer tracer;
+
     @PostConstruct
-    public void initialize()
-    {
+    public void initialize() {
         LOGGER.info("MessagesResource.initialize()");
         sseService.initializeSse(sse);
-        
+
         LOGGER.info("MessagingRessource.initialize() jms");
         messagingReceiver.startReceiver();
-        
+
     }
-    
+
     @GET
     @Path("/test")
     @Produces(MediaType.APPLICATION_JSON)
-    public String test()
-    {
+    public String test() {
         return "test";
     }
-    
+
     @GET
     // @Path("subscribe")
     @Path("/stream")
     @Produces(MediaType.SERVER_SENT_EVENTS)
-    public void listen(@Context
-    SseEventSink sseEventSink)
-    {
+    public void listen(@Context SseEventSink sseEventSink) {
+
+        Span span = tracer.spanBuilder("messages").setSpanKind(SpanKind.SERVER).startSpan();
+        span.makeCurrent();
         sseService.getBroadcaster().register(sseEventSink);
+        span.end();
     }
-    
+
 }

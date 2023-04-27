@@ -11,6 +11,8 @@ docker run -e POSTGRES_PASSWORD=postgres -p 5432:15432 postgres:13
 mvn flyway:info
 mvn flyway:migrate
 
+mvn clean package -DskipTests=true
+
 java -jar ../testhollowjar/target/testhollowjar.jar --deployment=target/testmessagingwar.war -Djboss.socket.binding.port-offset=100
 
 http://localhost:9990/health

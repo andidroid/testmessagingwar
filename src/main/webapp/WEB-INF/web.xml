@@ -8,4 +8,13 @@
     <welcome-file-list>
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Allowed methods</web-resource-name>
+            <url-pattern>/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <!-- no auth-constraint tag here -->
+    </security-constraint>
 </web-app>
