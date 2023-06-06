@@ -77,7 +77,7 @@
     <wildfly-jar-maven-plugin.version>9.0.0.Final</wildfly-jar-maven-plugin.version>
     <windup-maven-plugin.version>6.2.4.Final</windup-maven-plugin.version>
 
-    <kafka.version>3.4.0</kafka.version>
+    <kafka.version>3.4.1</kafka.version>
 
     <!-- <arquillian-wildfly.version>3.0.1.Final</arquillian-wildfly.version> -->
     <arquillian-wildfly.version>5.0.0.Final</arquillian-wildfly.version>
