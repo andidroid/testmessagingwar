@@ -73,7 +73,7 @@
 
     <wildfly.version>28.0.1.Final</wildfly.version>
 
-    <wildfly-maven-plugin.version>4.1.1.Final</wildfly-maven-plugin.version>
+    <wildfly-maven-plugin.version>4.2.0.Final</wildfly-maven-plugin.version>
     <wildfly-jar-maven-plugin.version>9.0.0.Final</wildfly-jar-maven-plugin.version>
     <windup-maven-plugin.version>6.2.5.Final</windup-maven-plugin.version>
 
