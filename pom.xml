@@ -86,7 +86,7 @@
     <shrinkwrap.version>1.2.6</shrinkwrap.version>
 
 
-    <jkube.version>1.13.1</jkube.version>
+    <jkube.version>1.14.0</jkube.version>
     <jib.version>3.3.2</jib.version>
     <flyway.version>9.22.0</flyway.version>
     <postgres.version>42.6.0</postgres.version>
