@@ -252,7 +252,7 @@ jobs:
         run: mvn dependency:resolve -s settings.xml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      #      - uses: actions/download-artifact@v3
+      #      - uses: actions/download-artifact@v4
       #        with:
       #          name: testmessagingwar-artifact
       #          path: target/testmessagingwar.war
@@ -283,7 +283,7 @@ jobs:
     steps:
       - name: Git Checkout
         uses: actions/checkout@v4
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: testmessagingwar-artifact
           path: target/testmessagingwar.war
